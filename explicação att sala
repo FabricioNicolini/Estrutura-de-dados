@@ -1,0 +1,52 @@
+1    Criação de um contador global: Adicionei uma variável global chamada contadorOperacoes para contar o número de operações de multiplicação realizadas. Ela foi declarada fora de qualquer método, para que possa ser acessada em toda a classe.
+
+java
+static int contadorOperacoes = 0;
+2    Preenchimento das matrizes A e B com números aleatórios: Implementei os métodos preencherA e preencherB para preencher as matrizes com valores aleatórios entre 0 e 10, utilizando a classe Random.
+
+java
+public static void preencherA(int A[][]) {
+    Random rand = new Random();
+    for (int i = 0; i < A.length; i++) {
+        for (int j = 0; j < A[0].length; j++) {
+            A[i][j] = rand.nextInt(11);
+        }
+    }
+}
+
+public static void preencherB(int B[][]) {
+    Random rand = new Random();
+    for (int i = 0; i < B.length; i++) {
+        for (int j = 0; j < B[0].length; j++) {
+            B[i][j] = rand.nextInt(11);
+        }
+    }
+}
+3    Incrementação do contador no método de multiplicação: No método multiplicar, adicionei a linha contadorOperacoes++; dentro do loop que realiza a multiplicação, para contar cada operação de multiplicação realizada.
+
+java
+public static int[][] multiplicar(int[][] A, int[][] B) {
+    int[][] C = new int[A.length][B[0].length];
+    for (int i = 0; i < A.length; i++) {
+        for (int j = 0; j < B[0].length; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < A[0].length; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+                contadorOperacoes++;
+            }
+        }
+    }
+    return C;
+}
+4    Exibição do resultado e da quantidade de operações realizadas: No método exibirResultado, implementei a exibição dos valores da matriz C. Após exibir os resultados, a quantidade de operações realizadas é exibida no método main.
+
+java
+public static void exibirResultado(int C[][]) {
+    for (int i = 0; i < C.length; i++) {
+        for (int j = 0; j < C[0].length; j++) {
+            System.out.print(C[i][j] + " ");
+        }
+        System.out.println();
+    }
+}
+5    Testes com matrizes 2x2: Para testar o código, inicialmente usei matrizes de 2x2. Você pode ajustar o tamanho das matrizes conforme necessário para realizar os testes indicados.
