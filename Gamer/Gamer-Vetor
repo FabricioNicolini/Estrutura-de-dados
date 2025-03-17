@@ -1,0 +1,61 @@
+class Vetor {
+    private Gamer[] A;  // Array para armazenar os objetos Gamer
+    private int capacity; // Capacidade do vetor
+    private int size; // Número de elementos no vetor
+
+    public Vetor(int capacity) {
+        A = new Gamer[capacity];
+        this.size = 0;
+        this.capacity = capacity;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == capacity;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Gamer get(int i) throws Exception {
+        if (i < 0 || i >= size)
+            throw new Exception("Posição inválida!");
+        return A[i];
+    }
+
+    public void add(Gamer gamer) throws Exception {
+        if (isFull()) {
+            throw new Exception("A lista está cheia! Impossível inserir.");
+        }
+
+        int i;
+        for (i = size - 1; i >= 0 && A[i].getScore() < gamer.getScore(); i--) {
+            A[i + 1] = A[i]; // Desloca elementos para abrir espaço na posição correta
+        }
+        
+        A[i + 1] = gamer;
+        size++;
+    }
+
+    public void remove(int i) throws Exception {
+        if (isEmpty())
+            throw new Exception("A lista está vazia! Impossível remover.");
+        if (i < 0 || i >= size)
+            throw new Exception("Posição inválida!");
+
+        for (int p = i; p < size - 1; p++) {
+            A[p] = A[p + 1];
+        }
+        size--;
+    }
+
+    public void show() {
+        for (int i = 0; i < size; i++)
+            System.out.println(A[i]);
+        System.out.println("Fim da lista!");
+    }
+}

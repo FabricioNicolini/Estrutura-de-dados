@@ -1,0 +1,32 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // 1. Criando a lista de até 10 jogadores
+            Vetor lista = new Vetor(10);
+
+            // 2. Inserindo 5 jogadores
+            lista.add(new Gamer("Mike", 105));
+            lista.add(new Gamer("Rob", 750));
+            lista.add(new Gamer("Paul", 720));
+            lista.add(new Gamer("Anna", 660));
+            lista.add(new Gamer("Rose", 590));
+
+            // 3. Exibir a lista de scores
+            System.out.println("Lista de Scores:");
+            lista.show();
+
+            // 4. Mostrar quem está na primeira posição
+            System.out.println("Primeiro colocado: " + lista.get(0));
+
+            // 5. Remover o jogador na 3ª posição
+            lista.remove(2);
+
+            // 6. Exibir a lista após a remoção
+            System.out.println("Lista de Scores após remoção:");
+            lista.show();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+}
